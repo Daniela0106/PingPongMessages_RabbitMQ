@@ -1,0 +1,15 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Archivo de paso de mensajes entre un publicador y un suscriptor",
+  "main": "send.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/Daniela0106/PingPongMessages_RabbitMQ.git)"
+  },
+  "author": "Daniela Barrientos (https://veryinterestingis.blogspot.com)",
+  "license": "ISC"
+}
