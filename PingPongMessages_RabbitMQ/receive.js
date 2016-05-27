@@ -7,15 +7,15 @@ amqp.connect('amqp://localhost', function(err, conn) {
     var q = 'TestDBG';
 
     ch.assertQueue(q, {durable: true});
-    console.log(" [*] Esperando mensajes de la cola %s. Para salir presione CTRL+C", q);
+    //console.log(" [*] Esperando mensajes de la cola %s. Para salir presione CTRL+C", q);
     //Espera de 2 segundos:
-    setTimeout(function() { conn.close(); process.exit(0) }, 2000); 
-    ch.consume(q, function(msg) {
-      console.log(" Se recibió %s", msg.content.toString());
+    setTimeout(function() {
       ch.sendToQueue(q, new Buffer("PONG_MESSAGE")); 
-          console.log("Pong Message Enviado");
-   
-    }, {noAck: true});
+      console.log("PONG_MESSAGE enviado");
+      conn.close(); process.exit(0) 
+      
+    }, 2000); 
+    
   });
 });
 
