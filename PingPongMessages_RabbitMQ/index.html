@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <title title="Ping-Pong | Daniela">Responsive Ping Pong Message Sender| DSBC </title>
+    <link rel="shortcut icon" href="images/icon.ico">
+   
+    <script src="send.js" type="text/javascript"></script>
+        
+</head>   
+<body>
+    
+    <div id="wrapper">
+    <div class="header">
+        <div class="col-12">
+            <h1>Responsive Ping Message Sender</h1>
+        </div>
+    </div>
+    
+    <!--Welcome - Modal message-->
+    <script> {
+      alert("Ping is a responsive app that allows you to send messages to a Message Broker");
+    } 
+    </script>
+    <!--End of Modal-->
+
+    
+    <div>
+        <div class="firstContent">
+            <div class="col-5">
+                <div class ="row">
+                    <div class="jumbotron">
+                        <!--<h2>Fill in the blank spaces</h2>-->
+                        <form role="form" id="formMessage">
+                            <div class="form-group">
+                            <label for="pingMessage">Ping Message: </label>
+                            <input type="text" class="form-control" name="pingMessage"
+                            placeholder="Write a 'PING_MESSAGE' here if you'd like!">
+                            <label for="messageAmount">Cantidad de veces a enviar</label>
+                            <input type="number" class="form-control" name="messageAmount"
+                            placeholder="Write an integer number">
+                            
+                            </div>                    
+                        </form>
+                        <button type="submit" class="btn btn-warning" onclick="handleRequest()">Send!</button> 
+                        <!--<button onclick="this.innerHTML=Date()">The time is?</button>--> 
+                    </div>
+                </div>
+                <h6>Mensaje enviado: <p id="mensajeEnviado"></p></h6>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-6">
+        <div class="container">
+                <iframe id="secondContent" src="http://localhost:15672/#/queues/%2F/TestDBG"></iframe>
+        </div>
+    </div>
+</div>
+</div>
+       
+        
+</body>
+
+<footer>
+    <div class="row">
+        <div class="container">
+        <a href="https://www.rabbitmq.com/tutorials/tutorial-one-javascript.html" target="_blank">
+            <div class="col-7">
+            </div>
+            <div class="col-5">
+                <img title="Clic here to find out more about the project's development"
+                src="images/rabbitMQLogo.png"  alt="Long live RabbitMQ!'">
+                </a>
+            </div>
+       </div>
+    </div>
+</footer>
+
+</html>
