@@ -12,7 +12,16 @@ amqp.connect('amqp://localhost', function(err, conn) {
       ch.assertQueue(q, {durable: true});
       ch.sendToQueue(q, new Buffer(msg));
       console.log("["+ contador+1 + "]" + "enviado %s", msg);
+      
+      setTimeout(function() {
+        
+        ch.consume(q, function(msg) {
+        if(msg="PONG_MESSAGE"){ 
+            console.log("Ya tengo el PONG_MESSAGE", msg.content.toString());
+          }
+        }, {noAck: true});   
+          conn.close(); process.exit(0)    
+      }, 10000);
+
     });
-    
-    setTimeout(function() { conn.close(); process.exit(0) }, 10000);
   });
