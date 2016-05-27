@@ -1,4 +1,5 @@
 /*****LA APLICACIÓN ENVÍA UN PING_MESSAGE AL MESSAGE BROKER RabbitMQ */
+
 var amqp = require('amqplib/callback_api');
 var contador="0";
 
@@ -13,5 +14,5 @@ amqp.connect('amqp://localhost', function(err, conn) {
       console.log("["+ contador+1 + "]" + "enviado %s", msg);
     });
     
-    setTimeout(function() { conn.close(); process.exit(0) }, 500);
+    setTimeout(function() { conn.close(); process.exit(0) }, 10000);
   });
