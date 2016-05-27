@@ -18,17 +18,3 @@ amqp.connect('amqp://localhost', function(err, conn) {
     
   });
 });
-
-
-
-
-
-/*
-function callback(a){
-    return function(){
-    	alert("Hello " + a);
-    }
-}
-var a = "world";
-setTimeout(callback(a), 2000);
-a = "Stac Overflow";*/
