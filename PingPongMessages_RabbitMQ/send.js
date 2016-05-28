@@ -1,7 +1,6 @@
 /*****LA APLICACIÓN ENVÍA UN PING_MESSAGE AL MESSAGE BROKER RabbitMQ */
 
 var amqp = require('amqplib/callback_api');
-var contador="0";
 
 amqp.connect('amqp://localhost', function(err, conn) {
     
@@ -11,17 +10,18 @@ amqp.connect('amqp://localhost', function(err, conn) {
 
       ch.assertQueue(q, {durable: true});
       ch.sendToQueue(q, new Buffer(msg));
-      console.log("["+ contador+1 + "]" + "enviado %s", msg);
+      console.log("[Ping dice] " + msg + " enviado");
       
       setTimeout(function() {
         
         ch.consume(q, function(msg) {
         if(msg="PONG_MESSAGE"){ 
-            console.log("Ya tengo el PONG_MESSAGE", msg.content.toString());
+            console.log("[Ping dice ]", msg.content.toString(), " recibido");
+            conn.close(); process.exit(0)    
           }
         }, {noAck: true});   
           conn.close(); process.exit(0)    
-      }, 10000);
+      }, 60000);
 
     });
   });

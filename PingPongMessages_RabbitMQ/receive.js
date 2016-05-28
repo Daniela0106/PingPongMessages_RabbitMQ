@@ -1,29 +1,25 @@
-//Consumer
+/*****LA APLICACIÓN RECIBE UN PING_MESSAGE DESDE EL MESSAGE BROKER RabbitMQ */
 
 var amqp = require('amqplib/callback_api');
 var q = 'TestDBG';
 
 amqp.connect('amqp://localhost', function(err, conn) {
   conn.createChannel(function(err, ch) {
-    
-
     ch.assertQueue(q, {durable: true});
-    
     ch.consume(q, function(msg) {
-    console.log(" [x] Received %s", msg.content.toString());
+    console.log("[Pong dice ]", msg.content.toString(), " recibido");
     }, {noAck: true});
-    
-    ch.sendToQueue(q, new Buffer("PONG_MESSAGE")); 
-    console.log("Pong message enviado a", q);
-    //Espera de 2 segundos:
-    setTimeout(function() {
-      
-      console.log("PONG_MESSAGE enviado");
-      conn.close(); process.exit(0) 
-      
-    }, 2000); 
-    
   });
   
-
+    conn.createChannel(function(err, ch) {
+    setTimeout(function() {
+    ch.assertQueue(q, {durable: true});
+    ch.sendToQueue(q, new Buffer("PONG_MESSAGE")); 
+    console.log("Pong message enviado a", q);
+    conn.close(); process.exit(0) 
+    
+  }, 2000); //Espera de 2 segundos
+  });    
+  
+  
 });
