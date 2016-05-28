@@ -14,8 +14,8 @@ amqp.connect('amqp://localhost', function(err, conn) {
       
       setTimeout(function() {
         
-        ch.consume(q, function(msg) {
-        if(msg="PONG_MESSAGE"){ 
+        ch.consume(q, function(err, msg) {
+        while(msg="PONG_MESSAGE"){ 
             console.log("[Ping dice] ", msg.content.toString(), " recibido");
             conn.close(); process.exit(0)    
           }
