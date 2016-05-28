@@ -16,12 +16,12 @@ amqp.connect('amqp://localhost', function(err, conn) {
         
         ch.consume(q, function(msg) {
         if(msg="PONG_MESSAGE"){ 
-            console.log("[Ping dice ]", msg.content.toString(), " recibido");
+            console.log("[Ping dice] ", msg.content.toString(), " recibido");
             conn.close(); process.exit(0)    
           }
         }, {noAck: true});   
           conn.close(); process.exit(0)    
-      }, 60000);
+      }, 10000);
 
     });
   });

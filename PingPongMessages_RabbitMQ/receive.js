@@ -7,19 +7,19 @@ amqp.connect('amqp://localhost', function(err, conn) {
   conn.createChannel(function(err, ch) {
     ch.assertQueue(q, {durable: true});
     ch.consume(q, function(msg) {
-    console.log("[Pong dice ]", msg.content.toString(), " recibido");
+    console.log("[Pong dice] ", msg.content.toString(), " recibido");
     }, {noAck: true});
-  });
-  
-    conn.createChannel(function(err, ch) {
+    
     setTimeout(function() {
     ch.assertQueue(q, {durable: true});
     ch.sendToQueue(q, new Buffer("PONG_MESSAGE")); 
-    console.log("Pong message enviado a", q);
+    console.log("[Pong dice] PONG_MESSAGE enviado a", q);
     conn.close(); process.exit(0) 
     
   }, 2000); //Espera de 2 segundos
-  });    
+
+  });
   
+
   
 });
